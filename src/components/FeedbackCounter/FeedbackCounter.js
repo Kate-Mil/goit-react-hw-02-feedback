@@ -8,18 +8,30 @@ class FeedbackCounter extends React.Component {
     bad: 0,
   };
 
+  addFeedback = e => {
+    this.setState(prevState => {
+      if (e.target.textContent === 'Good') {
+        return { good: prevState.good + 1 };
+      } else if (e.target.textContent === 'Neutral') {
+        return { neutral: prevState.neutral + 1 };
+      } else if (e.target.textContent === 'Bad') {
+        return { bad: prevState.bad + 1 };
+      }
+    });
+  };
+
   render() {
     return (
       <div>
         <h2 className={css.title}>Please leave feedback</h2>
         <div className={css.bnt__set}>
-          <button type="button" className={css.bnt}>
+          <button type="button" onClick={this.addFeedback} className={css.bnt}>
             Good
           </button>
-          <button type="button" className={css.bnt}>
+          <button type="button" onClick={this.addFeedback} className={css.bnt}>
             Neutral
           </button>
-          <button type="button" className={css.bnt}>
+          <button type="button" onClick={this.addFeedback} className={css.bnt}>
             Bad
           </button>
         </div>
