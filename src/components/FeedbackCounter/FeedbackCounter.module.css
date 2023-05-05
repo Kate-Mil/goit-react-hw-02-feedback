@@ -48,11 +48,11 @@ button {
   width: 100px;
   display: inline-block;
   align-items: center;
-  padding: 6px 12px;
+  padding: 5px 10px;
 
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
 
   color: black;
   background-color: inherit;
