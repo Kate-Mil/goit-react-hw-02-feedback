@@ -11,23 +11,14 @@ class App extends Component {
     bad: 0,
   };
 
-  onLeaveFeedback = e => {
-    this.setState(prevState => {
-      if (e.target.textContent === 'Good') {
-        return { good: prevState.good + 1 };
-      } else if (e.target.textContent === 'Neutral') {
-        return { neutral: prevState.neutral + 1 };
-      } else if (e.target.textContent === 'Bad') {
-        return { bad: prevState.bad + 1 };
-      }
-    });
+  onLeaveFeedback = item => {
+    const option = item.toLowerCase();
+    this.setState(prevState => ({ [option]: prevState[option] + 1 }));
   };
 
   countTotalFeedback() {
     const { good, neutral, bad } = this.state;
-    let total = 0;
-    total = total + good + neutral + bad;
-    return total;
+    return good + neutral + bad;
   }
 
   countPositiveFeedbackPercentage() {
@@ -47,7 +38,10 @@ class App extends Component {
     return (
       <div>
         <Section title="Please leave feedback">
-          <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
+          <FeedbackOptions
+            options={['Good', 'Neutral', 'Bad']}
+            onClick={this.onLeaveFeedback}
+          />
         </Section>
         <Section title="Statistics">
           {good !== 0 || neutral !== 0 || bad !== 0 ? (
